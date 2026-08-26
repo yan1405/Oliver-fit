@@ -1,0 +1,186 @@
+{
+  "meta": {
+    "name": "Oliver Fit — Design DNA",
+    "description": "Tokens de design (dimensão design_system) para o app Oliver Fit — PWA de treino e dieta com identidade visual Apple, alinhados em sessão de perguntas com o usuário em 18/08/2026.",
+    "source_references": [
+      "Apple Human Interface Guidelines",
+      "21st.dev — coleção Apple-style (https://21st.dev/community/components/s/apple)",
+      "CalAI (referência visual apenas, sem funcionalidade de IA)",
+      "Apple Fitness+ / Apple Saúde (referência visual)"
+    ],
+    "created_at": "2026-08-18"
+  },
+  "design_system": {
+    "color": {
+      "palette_type": "quase monocromática com um único acento",
+      "primary": { "hex": "#007AFF", "role": "ação principal — botões primários, links, ícones ativos, estado selecionado" },
+      "secondary": { "hex": "#1C1C1E", "role": "texto e ícones de alta ênfase (label primário)" },
+      "accent": { "hex": "#0A84FF", "role": "variante do azul para modo escuro / estado hover-pressed" },
+      "neutral": {
+        "scale": ["#F2F2F7", "#E5E5EA", "#D1D1D6", "#C7C7CC", "#AEAEB2", "#8E8E93", "#636366", "#48484A", "#3A3A3C", "#2C2C2E", "#1C1C1E"],
+        "usage": "fundos agrupados, divisores, texto secundário/terciário, estados desabilitados"
+      },
+      "semantic": {
+        "success": "#34C759",
+        "warning": "#FF9500",
+        "error": "#FF3B30",
+        "info": "#007AFF"
+      },
+      "surface": {
+        "background": "light: #F2F2F7 · dark: #1C1C1E",
+        "card": "light: #FFFFFF · dark: #2C2C2E",
+        "elevated": "light: #FFFFFF (+ sombra) · dark: #3A3A3C (+ blur)"
+      },
+      "contrast_strategy": "camadas sutis — hierarquia por sombra suave e diferença de 1-2 níveis de cinza, não por bordas fortes"
+    },
+    "accessibility": {
+      "minimum_contrast_ratio": "4.5:1 para texto de corpo, em ambos os temas, inclusive sobre qualquer superfície de vidro (glassmorphism) e com conteúdo em movimento atrás",
+      "glass_text_rule": "nunca posicionar texto de corpo direto sobre glass puro sem verificação de contraste — se não for garantido, adicionar uma camada sólida semi-opaca por trás do texto antes do blur (é o que a própria Apple faz: 'vibrancy' nunca é vidro puro sob texto de corpo)",
+      "focus_visible": "obrigatório em todo elemento interativo, anel azul de 2px, nunca removido via outline:none sem substituto"
+    },
+    "typography": {
+      "type_scale": {
+        "display":     { "size": "34px", "weight": 700, "line_height": "41px", "tracking": "0.37px" },
+        "heading_1":   { "size": "28px", "weight": 700, "line_height": "34px", "tracking": "0.36px" },
+        "heading_2":   { "size": "22px", "weight": 700, "line_height": "28px", "tracking": "0.35px" },
+        "heading_3":   { "size": "20px", "weight": 600, "line_height": "25px", "tracking": "0.38px" },
+        "body":        { "size": "17px", "weight": 400, "line_height": "22px", "tracking": "-0.43px" },
+        "body_small":  { "size": "15px", "weight": 400, "line_height": "20px", "tracking": "-0.24px" },
+        "caption":     { "size": "12px", "weight": 400, "line_height": "16px", "tracking": "0px" },
+        "overline":    { "size": "11px", "weight": 600, "line_height": "13px", "tracking": "0.06px" }
+      },
+      "font_families": {
+        "heading": "-apple-system, 'SF Pro Display', system-ui, sans-serif",
+        "body": "-apple-system, 'SF Pro Text', system-ui, sans-serif",
+        "mono": "'SF Mono', ui-monospace, monospace — números de treino/calorias com tabular-nums"
+      },
+      "font_style_notes": "fonte do sistema nativa (-apple-system renderiza como SF Pro em dispositivos Apple, sem custo de licença); pesos bold para títulos, regular para corpo; algarismos tabulares em métricas numéricas"
+    },
+    "spacing": {
+      "base_unit": "4px (grid de 8pt da Apple)",
+      "scale": [4, 8, 12, 16, 20, 24, 32, 40, 48, 64],
+      "content_density": "comfortable",
+      "section_rhythm": "32–48px entre seções principais; 16–20px entre elementos dentro de um card"
+    },
+    "layout": {
+      "grid_system": "single column, mobile-first, baseline de 4px",
+      "max_content_width": "428px (referência iPhone Pro Max), container centralizado em telas maiores",
+      "columns": "1 (mobile) — 2 opcional em tablet/desktop, fora do escopo v1",
+      "gutter": "16px",
+      "breakpoints": { "mobile": "0–428px", "tablet": "429–834px", "desktop": "835px+" },
+      "alignment_tendency": "grid vertical estrito, cards full-width com padding lateral consistente (16–20px)"
+    },
+    "shape": {
+      "border_radius": { "small": "10px", "medium": "16px", "large": "20px", "pill": "999px" },
+      "border_usage": "somente em inputs — 1px, cor neutra clara",
+      "divider_style": "linha 0.5px em cinza claro, ou espaçamento em vez de linha dentro de listas agrupadas"
+    },
+    "elevation": {
+      "shadow_style": "soft diffused",
+      "levels": {
+        "low": "0 1px 2px rgba(0,0,0,0.04)",
+        "medium": "0 4px 12px rgba(0,0,0,0.08)",
+        "high": "0 12px 32px rgba(0,0,0,0.16)"
+      },
+      "depth_cues": "sombra suave + blur/glass em navegação e elementos flutuantes"
+    },
+    "iconography": {
+      "style": "linear/outline, monoline",
+      "stroke_weight": "regular (~1.5px equivalente)",
+      "size_scale": "16 / 20 / 24 / 32px",
+      "preferred_set": "SF Symbols — ver nota crítica em composite_notes sobre uso em PWA",
+      "fallback_rule": "PROIBIDO importar o pacote inteiro do Lucide/Heroicons e usar direto como substituto silencioso de SF Symbols. Quando um glifo equivalente não existir recriado, a substituição precisa ser curada individualmente (mesmo peso de traço ~1.5px, mesmo grid de tamanho) — nunca um ícone genérico de kit sem ajuste."
+    },
+    "motion": {
+      "easing": "spring suave — cubic-bezier(0.25, 0.1, 0.25, 1) como aproximação CSS; usar motion/framer-motion para spring real",
+      "duration_scale": { "micro": "150–200ms", "normal": "250–350ms", "macro": "400–500ms" },
+      "entrance_pattern": "fade + scale sutil (0.96→1) ou slide-up para sheets/modais",
+      "exit_pattern": "fade + slide-down para sheets; fade simples para overlays",
+      "philosophy": "minimal functional com toque de spring — sempre com propósito de feedback, nunca decorativo"
+    },
+    "components": {
+      "button_style": "primário: fundo azul sólido, texto branco, raio grande/pill, sem borda. Secundário: fundo neutro claro, texto azul ou preto. Terciário: ghost/texto simples",
+      "input_style": "fundo neutro claro (surface.card), raio médio, sem borda visível até foco; foco = anel azul sutil",
+      "card_style": "fundo branco/#2C2C2E, raio grande (squircle 20px), sombra suave, padding confortável",
+      "navigation_pattern": "tab bar inferior fixa, efeito de vidro (glass/blur), 4–5 itens com ícone + label",
+      "modal_style": "bottom sheet subindo de baixo, cantos superiores grandes, fundo com glass atrás",
+      "list_style": "lista agrupada estilo Ajustes da Apple (inset grouped), separadores finos, chevron à direita quando navegável",
+      "component_notes": "cards de destaque (dashboard, trilha de progresso) usam glass; listas e formulários usam superfícies sólidas para priorizar legibilidade",
+      "no_default_tokens_rule": "PROIBIDO qualquer cor indigo-*, zinc-* ou slate-* padrão do Tailwind/shadcn sobreviver sem ser substituída pelos tokens deste documento. Componentes importados do 21st.dev (base shadcn/Tailwind) devem ter as cores e raios remapeados para os tokens do Oliver Fit antes de considerar a tela pronta."
+    }
+  },
+  "signature_elements": {
+    "description": "Peças que precisam ser reconhecíveis como do Oliver Fit, não copiadas 1:1 de referência — fechadas na auditoria design-sem-cara-de-ia de 18/08/2026.",
+    "trail_path": {
+      "shape": "caminho serpenteado vertical, estilo Duolingo — curva de um lado para o outro conforme desce a tela, um nó por dia",
+      "node_states": "bloqueado (cinza neutro) · disponível hoje (azul primário + leve pulso) · concluído (azul preenchido + check)",
+      "rationale": "é a peça com maior potencial de identidade própria do app — não existe componente pronto equivalente no 21st.dev, é construção customizada (ver Oliver_Fit_Componentes_21st_dev.md, seção 'o que não existe pronto')"
+    },
+    "activity_ring": {
+      "base": "Apple Activity Ring (Kokonut Baffier, 21st.dev)",
+      "adaptation": "manter a mecânica (anel se fechando), mas ajustar espessura e adicionar um micro-comportamento próprio ao completar (ex.: pulso sutil ou brilho breve) — o suficiente para não ser um recorte idêntico do Apple Fitness, mantendo a linguagem Apple"
+    }
+  },
+  "design_style": {
+    "aesthetic": {
+      "mood": ["limpo", "confiável", "elegante", "motivador", "sereno"],
+      "genre": "consumer health & fitness app, ecossistema Apple",
+      "personality_traits": ["disciplinado", "acolhedor", "preciso"],
+      "adjectives": ["clean", "clínico porém caloroso", "minimalista funcional"]
+    },
+    "visual_language": {
+      "complexity": "minimal",
+      "ornamentation": "subtle accents (glass, sombra suave)",
+      "whitespace_usage": "generoso, respirado",
+      "focal_strategy": "single hero element por tela (ex.: trilha na Home, anel de macro na dieta)"
+    },
+    "brand_voice_in_ui": {
+      "tone": "direto e encorajador, sem gírias",
+      "formality": "informal-cordial",
+      "cta_style": "convite direto ('Registrar treino', 'Ver progresso')",
+      "empty_state_approach": "ilustração simples + frase motivadora curta",
+      "error_tone": "claro, sem culpar o usuário, com próxima ação sugerida",
+      "forbidden_phrases": [
+        "leve [treino/dieta/vida] para o próximo nível",
+        "tudo em um só lugar",
+        "construa o seu melhor eu",
+        "capacite-se a alcançar seus objetivos",
+        "qualquer variação genérica de 'transforme sua rotina'"
+      ],
+      "copy_test": "toda manchete/CTA precisa passar no teste: 'eu diria isso em voz alta pro Oliver Fit?' — se soar como qualquer app de fitness genérico, reescrever"
+    }
+  },
+  "visual_effects": {
+    "overview": {
+      "effect_intensity": "subtle-accent",
+      "performance_tier": "lightweight",
+      "fallback_strategy": "reduzir a superfícies sólidas em dispositivos de baixo desempenho",
+      "primary_technology": "CSS (backdrop-filter) + Motion/Framer Motion para easing"
+    },
+    "glassmorphism_neumorphism": {
+      "enabled": true,
+      "style": "glass",
+      "params": {
+        "blur_radius": "20px",
+        "transparency": "70–80% opacidade sobre o conteúdo",
+        "border_treatment": "borda 1px branca a 10% de opacidade",
+        "shadow_type": "soft diffused",
+        "light_source_angle": "topo, 90°"
+      }
+    },
+    "particle_systems": { "enabled": false },
+    "3d_elements": { "enabled": false },
+    "shader_effects": { "enabled": false },
+    "scroll_effects": {
+      "parallax": { "enabled": false },
+      "scroll_triggered_animations": { "enabled": true, "trigger_points": "entrada de cards no dashboard e na trilha", "animation_type": "fade-up", "scrub_behavior": "não, dispara uma vez ao entrar em viewport" },
+      "scroll_morphing": { "enabled": false }
+    },
+    "text_effects": { "type": "none" },
+    "cursor_effects": { "enabled": false },
+    "image_effects": { "type": "none" },
+    "canvas_drawings": { "enabled": false },
+    "svg_animations": { "enabled": true, "type": "path-draw", "description": "preenchimento animado dos anéis de macro/progresso e da trilha de dias (estilo anel de atividade Apple)" },
+    "composite_notes": "App utilitário, não site de marketing — efeitos mantidos deliberadamente contidos (só glass + leve fade/scroll-reveal + anéis SVG animados). NOTA CRÍTICA 1: SF Symbols é um framework nativo da Apple sem licença oficial para exportação web; para o PWA, o Claude Code deve recriar os glifos equivalentes como SVG (ex.: via um conversor não-oficial ou um set compatível como Lucide redesenhado no mesmo peso de traço, sempre com curadoria — ver iconography.fallback_rule) — usar 'SF Symbols' literalmente no navegador não é tecnicamente viável sem essa adaptação. NOTA CRÍTICA 2 (auditoria design-sem-cara-de-ia, 18/08/2026): o app está fortemente ancorado na Apple, o que é correto, mas cria risco de zero identidade própria — ver signature_elements para as duas peças (trilha e anel) que precisam ficar reconhecíveis como do Oliver Fit, não como recorte 1:1 de apps da Apple."
+  }
+}

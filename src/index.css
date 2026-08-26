@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+:root {
+  color-scheme: light dark;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --background: #f2f2f7;
+  --foreground: #1c1c1e;
+  --card: #ffffff;
+  --card-foreground: #1c1c1e;
+  --muted: #e5e5ea;
+  --muted-foreground: #636366;
+  --primary: #007aff;
+  --primary-foreground: #ffffff;
+  --success: #34c759;
+  --warning: #ff9500;
+  --error: #ff3b30;
+  --border: #d1d1d6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1c1c1e;
+    --foreground: #f2f2f7;
+    --card: #2c2c2e;
+    --card-foreground: #ffffff;
+    --muted: #3a3a3c;
+    --muted-foreground: #aeaeb2;
+    --primary: #0a84ff;
+    --primary-foreground: #ffffff;
+    --border: #48484a;
+  }
+}
+
+* { box-sizing: border-box; }
+html { background: var(--background); }
+body { min-width: 320px; min-height: 100vh; margin: 0; }
+button, a, input, select, textarea { font: inherit; }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
