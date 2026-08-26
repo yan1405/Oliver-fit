@@ -25,6 +25,7 @@ Este arquivo é o plano de execução fase a fase para concluir o Oliver Fit por
 ## Fase 0 — Fundação técnica e scaffold
 
 **Depende de:** nada (scaffold parcial já existe: `package.json`, `vite.config.ts` com PWA configurado)
+**Avaliação visual:** aprovada por Yan em 26/08/2026.
 
 ### Checklist de entregáveis
 - [x] Confirmar `node_modules` instalado e `npm run dev` funcionando
