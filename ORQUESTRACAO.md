@@ -62,7 +62,7 @@ técnica e scaffold".
 
 **Depende de:** Fase 0
 **Bloqueio conhecido:** esta fase exige que o projeto Supabase já exista e que `.env.local` tenha valores reais (não os placeholders de `.env.example`) e que o provedor Google OAuth esteja habilitado no Supabase Auth — **isso é ação do usuário, não do agente**. Se `.env.local` não existir ou tiver valores vazios, **pare esta fase e peça ao usuário para completar a criação do projeto Supabase antes de continuar.**
-**Avaliação visual:** pendente de aprovação do Yan.
+**Avaliação visual:** aprovada por Yan em 28/08/2026.
 
 ### Checklist de entregáveis
 - [x] Confirmar `.env.local` preenchido (não prosseguir sem isso)
