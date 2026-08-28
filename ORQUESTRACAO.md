@@ -170,14 +170,15 @@ da Fase 3 e faça commit "feat(fase-3): trilha de progresso".
 ## Fase 4 — Módulo Treinos
 
 **Depende de:** Fase 1, Fase 2
+**Avaliação visual:** pendente de aprovação do Yan.
 
 ### Checklist de entregáveis
-- [ ] CRUD de exercícios próprios (`exercises`)
-- [ ] Montagem de planos de treino (`workout_plans` + `workout_plan_exercises`) e agenda semanal (`workout_schedule`)
-- [ ] Tela "treino do dia": lista de exercícios do plano do dia, log de séries (reps, carga) gravando em `set_logs`, cronômetro de descanso
-- [ ] Ao concluir o treino: `workout_sessions.status = 'completed'` e atualizar `trail_days.workout_completed`
-- [ ] Histórico de evolução de carga por exercício (gráfico simples)
-- [ ] Anel de atividade (versão Oliver Fit, ver `signature_elements.activity_ring`) mostrando progresso do treino do dia
+- [x] CRUD de exercícios próprios (`exercises`)
+- [x] Montagem de planos de treino (`workout_plans` + `workout_plan_exercises`) e agenda semanal (`workout_schedule`)
+- [x] Tela "treino do dia": lista de exercícios do plano do dia, log de séries (reps, carga) gravando em `set_logs`, cronômetro de descanso
+- [x] Ao concluir o treino: `workout_sessions.status = 'completed'` e atualizar `trail_days.workout_completed`
+- [x] Histórico de evolução de carga por exercício (gráfico simples)
+- [x] Anel de atividade (versão Oliver Fit, ver `signature_elements.activity_ring`) mostrando progresso do treino do dia
 
 ### Critérios de aceite
 - Consigo cadastrar um exercício, montar um plano, executá-lo e ver o histórico

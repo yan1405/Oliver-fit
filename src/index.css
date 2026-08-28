@@ -53,6 +53,12 @@ button, a, input, select, textarea { font: inherit; }
 
 .trail-node-today { animation: trail-pulse 2.4s ease-out infinite; }
 
+@keyframes activity-complete {
+  50% { filter: drop-shadow(0 0 8px var(--primary-pulse)); transform: scale(1.03); }
+}
+
+.activity-ring-complete { animation: activity-complete 500ms ease-out; }
+
 @media (prefers-reduced-motion: reduce) {
-  .trail-node-today { animation: none; }
+  .trail-node-today, .activity-ring-complete { animation: none; }
 }

@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "test:trail": "node --experimental-strip-types src/lib/trail.test.mjs",
+    "test:workouts": "node --experimental-strip-types src/lib/workouts.test.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

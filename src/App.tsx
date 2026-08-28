@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { AppShell } from './components/features/AppShell'
 import { AuthProvider } from './components/features/AuthProvider'
@@ -9,8 +10,9 @@ import { HomePage } from './pages/HomePage'
 import { OnboardingPage } from './pages/OnboardingPage'
 import { ProfilePage } from './pages/ProfilePage'
 
+const WorkoutPage = lazy(() => import('./pages/WorkoutPage').then((module) => ({ default: module.WorkoutPage })))
+
 const routes = [
-  ['/treino', 'Treino'],
   ['/dieta', 'Dieta'],
   ['/progresso', 'Progresso'],
 ] as const
@@ -43,6 +45,7 @@ function AppRoutes() {
         <Route path="/onboarding" element={<OnboardingPage />} />
         <Route element={<AppShell />}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/treino" element={<Suspense fallback={<main className="flex min-h-screen items-center justify-center bg-background text-body text-muted-foreground">Carregando treino…</main>}><WorkoutPage /></Suspense>} />
           {routes.map(([path, title]) => (
             <Route key={path} path={path} element={<PlaceholderPage title={title} />} />
           ))}
