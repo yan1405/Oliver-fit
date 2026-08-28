@@ -170,7 +170,7 @@ da Fase 3 e faça commit "feat(fase-3): trilha de progresso".
 ## Fase 4 — Módulo Treinos
 
 **Depende de:** Fase 1, Fase 2
-**Avaliação visual:** pendente de aprovação do Yan.
+**Avaliação visual:** aprovada por Yan em 28/08/2026.
 
 ### Checklist de entregáveis
 - [x] CRUD de exercícios próprios (`exercises`)
@@ -238,7 +238,7 @@ Rode /oliver-fit-design-review antes de terminar. Marque os checkboxes da Fase 5
 ## Fase 6 — Dashboard
 
 **Depende de:** Fase 3, Fase 4, Fase 5
-**Avaliação visual:** pendente de aprovação do Yan.
+**Avaliação visual:** aprovada por Yan em 28/08/2026.
 
 ### Checklist de entregáveis
 - [x] Tela de resumo do dia: status do treino, calorias restantes, streak da trilha
