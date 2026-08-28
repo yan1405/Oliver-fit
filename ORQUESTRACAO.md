@@ -205,7 +205,7 @@ checkboxes da Fase 4 e faça commit "feat(fase-4): módulo treinos".
 ## Fase 5 — Módulo Dieta
 
 **Depende de:** Fase 1, Fase 2
-**Avaliação visual:** pendente de aprovação do Yan.
+**Avaliação visual:** aprovada por Yan em 28/08/2026.
 
 ### Checklist de entregáveis
 - [x] Registro manual de refeição (nome, quantidade, calorias, macros) gravando em `meals`
