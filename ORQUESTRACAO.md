@@ -238,10 +238,11 @@ Rode /oliver-fit-design-review antes de terminar. Marque os checkboxes da Fase 5
 ## Fase 6 — Dashboard
 
 **Depende de:** Fase 3, Fase 4, Fase 5
+**Avaliação visual:** pendente de aprovação do Yan.
 
 ### Checklist de entregáveis
-- [ ] Tela de resumo do dia: status do treino, calorias restantes, streak da trilha
-- [ ] Cards de estatística (Health Stat Card / Stats Card / Progress Metric Card, adaptados aos tokens)
+- [x] Tela de resumo do dia: status do treino, calorias restantes, streak da trilha
+- [x] Cards de estatística (Health Stat Card / Stats Card / Progress Metric Card, adaptados aos tokens)
 
 ### Critérios de aceite
 - Dashboard reflete dados reais de treino/dieta/trilha do dia atual, sem mock

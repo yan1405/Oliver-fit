@@ -10,6 +10,7 @@
     "test:trail": "node --experimental-strip-types src/lib/trail.test.mjs",
     "test:workouts": "node --experimental-strip-types src/lib/workouts.test.mjs",
     "test:nutrition": "node --experimental-strip-types src/lib/nutrition.test.mjs",
+    "test:dashboard": "node --experimental-strip-types src/lib/dashboard.test.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
