@@ -9,7 +9,7 @@ export default {
       muted: 'var(--muted)', 'muted-foreground': 'var(--muted-foreground)',
       primary: 'var(--primary)', 'primary-foreground': 'var(--primary-foreground)',
       success: 'var(--success)', warning: 'var(--warning)', error: 'var(--error)',
-      border: 'var(--border)',
+      border: 'var(--border)', glass: 'var(--glass)', 'glass-border': 'var(--glass-border)',
     },
     fontFamily: {
       sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'Segoe UI', 'sans-serif'],

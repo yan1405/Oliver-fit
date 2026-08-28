@@ -102,13 +102,14 @@ onboarding".
 ## Fase 2 — Design system aplicado e componentes base
 
 **Depende de:** Fase 0
+**Avaliação visual:** pendente de aprovação do Yan.
 
 ### Checklist de entregáveis
-- [ ] Buscar cada componente listado em `docs/componentes-21st.md` pelo nome exato (via MCP/CLI do 21st Labs se configurado, senão manualmente em 21st.dev)
-- [ ] Adaptar cada componente importado aos tokens do Oliver Fit (cor, raio — nunca deixar o componente "como veio")
-- [ ] Montar biblioteca local em `src/components/ui`: Button (primário/secundário/ghost), Card (sólido e glass), Input, BottomSheet, TabBar ("Bottom menu", não "Dock"), List (inset grouped estilo Ajustes)
-- [ ] Implementar o shell de navegação: tab bar inferior fixa com glass, itens: Home/Trilha, Treino, Dieta, Progresso, Perfil
-- [ ] Rodar `/oliver-fit-design-review` na biblioteca de componentes antes de fechar a fase
+- [x] Buscar cada componente listado em `docs/componentes-21st.md` pelo nome exato (via MCP/CLI do 21st Labs se configurado, senão manualmente em 21st.dev)
+- [x] Adaptar cada componente importado aos tokens do Oliver Fit (cor, raio — nunca deixar o componente "como veio")
+- [x] Montar biblioteca local em `src/components/ui`: Button (primário/secundário/ghost), Card (sólido e glass), Input, BottomSheet, TabBar ("Bottom menu", não "Dock"), List (inset grouped estilo Ajustes)
+- [x] Implementar o shell de navegação: tab bar inferior fixa com glass, itens: Home/Trilha, Treino, Dieta, Progresso, Perfil
+- [x] Rodar `/oliver-fit-design-review` na biblioteca de componentes antes de fechar a fase
 
 ### Critérios de aceite
 - Nenhum componente com cor/raio padrão do shadcn sobrevivendo

@@ -18,6 +18,8 @@
   --warning: #ff9500;
   --error: #ff3b30;
   --border: #d1d1d6;
+  --glass: rgba(255, 255, 255, 0.92);
+  --glass-border: rgba(255, 255, 255, 0.65);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,6 +33,8 @@
     --primary: #0a84ff;
     --primary-foreground: #ffffff;
     --border: #48484a;
+    --glass: rgba(44, 44, 46, 0.94);
+    --glass-border: rgba(255, 255, 255, 0.1);
   }
 }
 

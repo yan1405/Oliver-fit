@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Button } from '../components/ui/Button'
+import { Card } from '../components/ui/Card'
 import { supabase } from '../lib/supabase'
 
 export function LoginPage() {
@@ -22,7 +24,7 @@ export function LoginPage() {
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-background px-4 py-8 text-foreground">
-      <section className="w-full max-w-app rounded-large bg-card p-6 shadow-medium">
+      <Card className="w-full max-w-app">
         <div className="mb-6 h-1 w-10 rounded-pill bg-primary" aria-hidden="true" />
         <p className="mb-2 text-overline font-semibold uppercase text-muted-foreground">Oliver Fit</p>
         <h1 className="font-display text-heading-1 font-bold text-card-foreground">Entrar no aplicativo</h1>
@@ -31,17 +33,17 @@ export function LoginPage() {
           Use sua conta Google pessoal para acessar seus treinos e registros.
         </p>
 
-        <button
-          className="mt-8 w-full rounded-medium bg-primary px-4 py-4 text-body font-semibold text-primary-foreground disabled:opacity-50"
+        <Button
+          className="mt-8 w-full"
           type="button"
           onClick={signIn}
           disabled={loading}
         >
           {loading ? 'Abrindo Google…' : 'Continuar com Google'}
-        </button>
+        </Button>
 
-        {error && <p className="mt-4 text-body-small text-error" role="alert">{error}</p>}
-      </section>
+        {error && <p className="mt-4 border-l-2 border-error pl-3 text-body-small text-card-foreground" role="alert">{error}</p>}
+      </Card>
     </main>
   )
 }

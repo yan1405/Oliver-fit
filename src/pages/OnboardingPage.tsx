@@ -1,5 +1,8 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Button } from '../components/ui/Button'
+import { Card } from '../components/ui/Card'
+import { Input } from '../components/ui/Input'
 import { useAuth } from '../hooks/useAuth'
 import { supabase } from '../lib/supabase'
 
@@ -76,44 +79,38 @@ export function OnboardingPage() {
 
   return (
     <main className="min-h-screen bg-background px-4 py-8 text-foreground">
-      <form className="mx-auto w-full max-w-app rounded-large bg-card p-6 shadow-medium" onSubmit={submit}>
-        <div className="mb-6 h-1 w-10 rounded-pill bg-primary" aria-hidden="true" />
-        <p className="mb-2 text-overline font-semibold uppercase text-muted-foreground">Configuração inicial</p>
-        <h1 className="font-display text-heading-1 font-bold text-card-foreground">Suas metas</h1>
-        {/* TODO(copy): revisar com o usuário antes da entrega final. */}
-        <p className="mt-3 text-body text-muted-foreground">Defina os números que vão orientar seus registros diários.</p>
+      <form className="mx-auto w-full max-w-app" onSubmit={submit}>
+        <Card>
+          <div className="mb-6 h-1 w-10 rounded-pill bg-primary" aria-hidden="true" />
+          <p className="mb-2 text-overline font-semibold uppercase text-muted-foreground">Configuração inicial</p>
+          <h1 className="font-display text-heading-1 font-bold text-card-foreground">Suas metas</h1>
+          {/* TODO(copy): revisar com o usuário antes da entrega final. */}
+          <p className="mt-3 text-body text-muted-foreground">Defina os números que vão orientar seus registros diários.</p>
 
-        <div className="mt-8 grid gap-5">
-          {fields.map(([name, label, unit, placeholder]) => (
-            <label className="grid gap-2 text-body-small font-semibold text-card-foreground" key={name}>
-              {label}
-              <span className="flex items-center rounded-medium bg-muted px-4">
-                <input
-                  className="min-w-0 flex-1 bg-transparent py-4 text-body font-normal text-foreground"
-                  name={name}
-                  type="number"
-                  inputMode="decimal"
-                  min="0"
-                  step={name === 'daily_calorie_goal' ? '1' : '0.01'}
-                  placeholder={placeholder}
-                  value={values[name]}
-                  onChange={(event) => setValues((current) => ({ ...current, [name]: event.target.value }))}
-                  required
-                />
-                <span className="text-body-small font-normal text-muted-foreground">{unit}</span>
-              </span>
-            </label>
-          ))}
-        </div>
+          <div className="mt-8 grid gap-5">
+            {fields.map(([name, label, unit, placeholder]) => (
+              <Input
+                key={name}
+                label={label}
+                suffix={unit}
+                name={name}
+                type="number"
+                inputMode="decimal"
+                min="0"
+                step={name === 'daily_calorie_goal' ? '1' : '0.01'}
+                placeholder={placeholder}
+                value={values[name]}
+                onChange={(event) => setValues((current) => ({ ...current, [name]: event.target.value }))}
+                required
+              />
+            ))}
+          </div>
 
-        <button
-          className="mt-8 w-full rounded-medium bg-primary px-4 py-4 text-body font-semibold text-primary-foreground disabled:opacity-50"
-          type="submit"
-          disabled={saving || loadingProfile}
-        >
-          {loadingProfile ? 'Carregando…' : saving ? 'Salvando…' : 'Salvar e continuar'}
-        </button>
-        {error && <p className="mt-4 text-body-small text-error" role="alert">{error}</p>}
+          <Button className="mt-8 w-full" type="submit" disabled={saving || loadingProfile}>
+            {loadingProfile ? 'Carregando…' : saving ? 'Salvando…' : 'Salvar e continuar'}
+          </Button>
+          {error && <p className="mt-4 border-l-2 border-error pl-3 text-body-small text-card-foreground" role="alert">{error}</p>}
+        </Card>
       </form>
     </main>
   )
