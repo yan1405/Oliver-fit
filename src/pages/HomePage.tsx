@@ -21,6 +21,7 @@ export function HomePage() {
     async function load() {
       const windowDays = buildTrailWindow()
       const today = windowDays.find((day) => day.isToday)!
+      const dates = windowDays.map((day) => day.date)
       const { error: writeError } = await supabase
         .from('trail_days')
         .upsert({ user_id: userId, trail_date: today.date }, { onConflict: 'user_id,trail_date' })
@@ -31,8 +32,8 @@ export function HomePage() {
         supabase
           .from('trail_days')
           .select('trail_date,day_completed')
-          .gte('trail_date', windowDays[0].date)
-          .lte('trail_date', windowDays.at(-1)!.date)
+          .gte('trail_date', dates.at(-1)!)
+          .lte('trail_date', dates[0])
           .order('trail_date'),
         supabase
           .from('v_current_streak')

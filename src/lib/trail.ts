@@ -22,7 +22,7 @@ export function buildTrailWindow(today = new Date()): TrailPoint[] {
 
   return xPositions.map((x, index) => {
     const date = new Date(base)
-    date.setDate(base.getDate() + index - 3)
+    date.setDate(base.getDate() + 3 - index)
     return {
       date: localDateKey(date),
       label: new Intl.DateTimeFormat('pt-BR', { weekday: 'short', day: '2-digit' }).format(date).replace('.', ''),
