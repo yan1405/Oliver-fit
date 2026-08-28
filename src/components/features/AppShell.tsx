@@ -4,7 +4,7 @@ import { TabBar } from '../ui/TabBar'
 export function AppShell() {
   return (
     <>
-      <div className="pb-24"><Outlet /></div>
+      <div className="pb-16"><Outlet /></div>
       <TabBar />
     </>
   )

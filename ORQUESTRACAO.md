@@ -136,13 +136,14 @@ aplicado e componentes base".
 ## Fase 3 — Elemento-assinatura: trilha de progresso
 
 **Depende de:** Fase 1 (dados/auth), Fase 2 (componentes base)
+**Avaliação visual:** pendente de aprovação do Yan.
 
 ### Checklist de entregáveis
-- [ ] Queries de leitura/escrita em `trail_days` (Supabase)
-- [ ] Componente de caminho serpenteado vertical (SVG customizado), um nó por dia
-- [ ] Três estados visuais do nó: bloqueado (cinza) / disponível hoje (azul + pulso) / concluído (azul preenchido + check) — conforme `signature_elements.trail_path` em `docs/design-tokens.json`
-- [ ] Consumo da view `v_current_streak` pra exibir a sequência atual
-- [ ] Tela Home = a trilha como ponto de entrada do app
+- [x] Queries de leitura/escrita em `trail_days` (Supabase)
+- [x] Componente de caminho serpenteado vertical (SVG customizado), um nó por dia
+- [x] Três estados visuais do nó: bloqueado (cinza) / disponível hoje (azul + pulso) / concluído (azul preenchido + check) — conforme `signature_elements.trail_path` em `docs/design-tokens.json`
+- [x] Consumo da view `v_current_streak` pra exibir a sequência atual
+- [x] Tela Home = a trilha como ponto de entrada do app
 
 ### Critérios de aceite
 - A trilha renderiza o caminho serpenteado (não uma lista reta) com os três estados visuais corretos

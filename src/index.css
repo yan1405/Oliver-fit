@@ -20,6 +20,7 @@
   --border: #d1d1d6;
   --glass: rgba(255, 255, 255, 0.92);
   --glass-border: rgba(255, 255, 255, 0.65);
+  --primary-pulse: rgba(0, 122, 255, 0.28);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,6 +36,7 @@
     --border: #48484a;
     --glass: rgba(44, 44, 46, 0.94);
     --glass-border: rgba(255, 255, 255, 0.1);
+    --primary-pulse: rgba(10, 132, 255, 0.28);
   }
 }
 
@@ -43,3 +45,14 @@ html { background: var(--background); }
 body { min-width: 320px; min-height: 100vh; margin: 0; }
 button, a, input, select, textarea { font: inherit; }
 :focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+@keyframes trail-pulse {
+  0%, 100% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 0 0 0 var(--primary-pulse); }
+  55% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 0 0 12px transparent; }
+}
+
+.trail-node-today { animation: trail-pulse 2.4s ease-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .trail-node-today { animation: none; }
+}

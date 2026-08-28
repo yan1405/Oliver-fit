@@ -5,11 +5,11 @@ import { ProtectedRoute } from './components/features/ProtectedRoute'
 import { Card } from './components/ui/Card'
 import { useAuth } from './hooks/useAuth'
 import { LoginPage } from './pages/LoginPage'
+import { HomePage } from './pages/HomePage'
 import { OnboardingPage } from './pages/OnboardingPage'
 import { ProfilePage } from './pages/ProfilePage'
 
 const routes = [
-  ['/', 'Fundação do aplicativo'],
   ['/treino', 'Treino'],
   ['/dieta', 'Dieta'],
   ['/progresso', 'Progresso'],
@@ -42,6 +42,7 @@ function AppRoutes() {
       <Route element={<ProtectedRoute />}>
         <Route path="/onboarding" element={<OnboardingPage />} />
         <Route element={<AppShell />}>
+          <Route path="/" element={<HomePage />} />
           {routes.map(([path, title]) => (
             <Route key={path} path={path} element={<PlaceholderPage title={title} />} />
           ))}
