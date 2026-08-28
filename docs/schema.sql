@@ -182,11 +182,12 @@ create table public.trail_days (
 -- fechado (>= 3 refeições E calorias entre 90-110% da meta). A aplicação
 -- deve chamar isso a cada novo registro de refeição e fazer upsert em
 -- trail_days.diet_completed com o resultado.
-create view public.v_daily_nutrition_status as
+create view public.v_daily_nutrition_status
+with (security_invoker = true) as
 select
   m.user_id,
   m.meal_date,
-  count(*)::int as meals_logged,
+  count(distinct m.meal_type)::int as meals_logged,
   sum(m.calories)::int as total_calories,
   p.daily_calorie_goal,
   case
@@ -194,7 +195,7 @@ select
     else round(100.0 * sum(m.calories) / p.daily_calorie_goal, 2)
   end as pct_of_calorie_goal,
   (
-    count(*) >= 3
+    count(distinct m.meal_type) >= 3
     and p.daily_calorie_goal is not null
     and p.daily_calorie_goal > 0
     and sum(m.calories) between 0.90 * p.daily_calorie_goal and 1.10 * p.daily_calorie_goal
@@ -207,25 +208,30 @@ group by m.user_id, m.meal_date, p.daily_calorie_goal;
 -- consulta sobre trail_days, não armazenados em tabela própria — evita
 -- estado duplicado que pode divergir do dado de origem. Ver exemplo de
 -- view abaixo.
-create view public.v_current_streak as
-select
-  user_id,
-  count(*) as current_streak
-from (
+create view public.v_current_streak
+with (security_invoker = true) as
+with grouped_days as (
   select
     user_id,
     trail_date,
     trail_date - (row_number() over (partition by user_id order by trail_date))::int as grp
   from public.trail_days
   where day_completed = true
-) t
-where grp = (
-  select trail_date - (row_number() over (order by trail_date))::int
-  from public.trail_days d2
-  where d2.user_id = t.user_id and d2.day_completed = true
-  order by trail_date desc
-  limit 1
+), current_groups as (
+  select
+    user_id,
+    trail_date,
+    grp,
+    first_value(grp) over (partition by user_id order by trail_date desc) as latest_grp,
+    max(trail_date) over (partition by user_id) as latest_completed_date
+  from grouped_days
 )
+select
+  user_id,
+  count(*) as current_streak
+from current_groups
+where grp = latest_grp
+  and latest_completed_date >= current_date - 1
 group by user_id;
 
 -- ============================================================================

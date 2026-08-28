@@ -62,15 +62,16 @@ técnica e scaffold".
 
 **Depende de:** Fase 0
 **Bloqueio conhecido:** esta fase exige que o projeto Supabase já exista e que `.env.local` tenha valores reais (não os placeholders de `.env.example`) e que o provedor Google OAuth esteja habilitado no Supabase Auth — **isso é ação do usuário, não do agente**. Se `.env.local` não existir ou tiver valores vazios, **pare esta fase e peça ao usuário para completar a criação do projeto Supabase antes de continuar.**
+**Avaliação visual:** pendente de aprovação do Yan.
 
 ### Checklist de entregáveis
-- [ ] Confirmar `.env.local` preenchido (não prosseguir sem isso)
-- [ ] Rodar `docs/schema.sql` no projeto Supabase (via SQL Editor do painel, ou `supabase db push` se o CLI estiver instalado e o projeto linkado)
-- [ ] Criar `src/lib/supabase.ts` (client tipado, usando as variáveis de ambiente)
-- [ ] Gerar/escrever tipos TypeScript das 11 tabelas em `src/types/database.ts`, batendo com `docs/schema.sql`
-- [ ] Implementar fluxo de login com Google (`supabase.auth.signInWithOAuth`) e um hook `useAuth`
-- [ ] Implementar wrapper de rota protegida (redireciona pra login se não autenticado)
-- [ ] Tela de onboarding mínima: altura, peso inicial, meta de peso, metas diárias de calorias/macros — grava em `profiles`
+- [x] Confirmar `.env.local` preenchido (não prosseguir sem isso)
+- [x] Rodar `docs/schema.sql` no projeto Supabase (via SQL Editor do painel, ou `supabase db push` se o CLI estiver instalado e o projeto linkado)
+- [x] Criar `src/lib/supabase.ts` (client tipado, usando as variáveis de ambiente)
+- [x] Gerar/escrever tipos TypeScript das 11 tabelas em `src/types/database.ts`, batendo com `docs/schema.sql`
+- [x] Implementar fluxo de login com Google (`supabase.auth.signInWithOAuth`) e um hook `useAuth`
+- [x] Implementar wrapper de rota protegida (redireciona pra login se não autenticado)
+- [x] Tela de onboarding mínima: altura, peso inicial, meta de peso, metas diárias de calorias/macros — grava em `profiles`
 
 ### Critérios de aceite
 - Login com Google funciona de ponta a ponta (testado manualmente pelo usuário)
