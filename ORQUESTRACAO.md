@@ -136,7 +136,7 @@ aplicado e componentes base".
 ## Fase 3 — Elemento-assinatura: trilha de progresso
 
 **Depende de:** Fase 1 (dados/auth), Fase 2 (componentes base)
-**Avaliação visual:** pendente de aprovação do Yan.
+**Avaliação visual:** aprovada por Yan em 28/08/2026.
 
 ### Checklist de entregáveis
 - [x] Queries de leitura/escrita em `trail_days` (Supabase)
