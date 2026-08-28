@@ -11,6 +11,7 @@
     "test:workouts": "node --experimental-strip-types src/lib/workouts.test.mjs",
     "test:nutrition": "node --experimental-strip-types src/lib/nutrition.test.mjs",
     "test:dashboard": "node --experimental-strip-types src/lib/dashboard.test.mjs",
+    "test:measurements": "node --experimental-strip-types src/lib/measurements.test.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

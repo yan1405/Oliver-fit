@@ -264,12 +264,13 @@ Rode /oliver-fit-design-review antes de terminar. Marque os checkboxes da Fase 6
 ## Fase 7 — Medidas e progresso
 
 **Depende de:** Fase 1, Fase 2
+**Avaliação visual:** pendente de aprovação do Yan.
 
 ### Checklist de entregáveis
-- [ ] CRUD de `measurements` (peso, medidas corporais)
-- [ ] Upload de fotos de progresso pro Supabase Storage + registro em `progress_photos`
-- [ ] Gráfico de evolução de peso/medidas ao longo do tempo
-- [ ] Galeria de fotos com comparação por data
+- [x] CRUD de `measurements` (peso, medidas corporais)
+- [x] Upload de fotos de progresso pro Supabase Storage + registro em `progress_photos`
+- [x] Gráfico de evolução de peso/medidas ao longo do tempo
+- [x] Galeria de fotos com comparação por data
 
 ### Critérios de aceite
 - Consigo registrar peso/medida numa data, subir uma foto, e ver o gráfico de evolução refletindo os dados reais

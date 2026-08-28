@@ -295,3 +295,28 @@ create policy "set_logs_self_access" on public.set_logs
       where s.id = session_id and s.user_id = auth.uid()
     )
   );
+
+-- ============================================================================
+-- Storage — bucket de fotos de progresso (Fase 7)
+-- Adicionado em 28/08/2026. Cole este bloco no SQL Editor do Supabase junto
+-- com o restante do schema (ou isoladamente, se o schema principal já tiver
+-- sido aplicado). Bucket PRIVADO — são fotos de progresso corporal, dado de
+-- saúde sensível; a aplicação lê via signed URL de curta duração, nunca por
+-- URL pública. Caminho do objeto: "<user_id>/<taken_at>-<angle>-<uuid>.<ext>",
+-- o prefixo <user_id> é o que a política de RLS abaixo usa para isolar cada
+-- usuário dentro do bucket compartilhado.
+-- ============================================================================
+
+insert into storage.buckets (id, name, public)
+values ('progress-photos', 'progress-photos', false)
+on conflict (id) do nothing;
+
+create policy "progress_photos_storage_self_access" on storage.objects
+  for all using (
+    bucket_id = 'progress-photos'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  )
+  with check (
+    bucket_id = 'progress-photos'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  );
