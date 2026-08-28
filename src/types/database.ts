@@ -20,6 +20,7 @@ type Profile = {
   daily_carb_goal_g: number | null
   daily_fat_goal_g: number | null
   timezone: string
+  reminder_times: string[]
   created_at: string
   updated_at: string
 }
@@ -128,6 +129,15 @@ type TrailDay = {
   completed_at: string | null
 }
 
+type PushSubscriptionRow = {
+  id: string
+  user_id: string
+  endpoint: string
+  p256dh: string
+  auth: string
+  created_at: string
+}
+
 export type Database = {
   public: {
     Tables: {
@@ -142,6 +152,7 @@ export type Database = {
       measurements: Table<Measurement, 'user_id' | 'measured_at'>
       progress_photos: Table<ProgressPhoto, 'user_id' | 'taken_at' | 'storage_path'>
       trail_days: Table<TrailDay, 'user_id' | 'trail_date'>
+      push_subscriptions: Table<PushSubscriptionRow, 'user_id' | 'endpoint' | 'p256dh' | 'auth'>
     }
     Views: {
       v_daily_nutrition_status: {

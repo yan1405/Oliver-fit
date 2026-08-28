@@ -110,6 +110,12 @@ export function OnboardingPage() {
             {loadingProfile ? 'Carregando…' : saving ? 'Salvando…' : 'Salvar e continuar'}
           </Button>
           {error && <p className="mt-4 border-l-2 border-error pl-3 text-body-small text-card-foreground" role="alert">{error}</p>}
+
+          <p className="mt-6 rounded-medium bg-muted p-4 text-caption text-muted-foreground">
+            No iPhone, os lembretes de treino e dieta só chegam depois de adicionar o Oliver Fit
+            à Tela de Início (compartilhar → Adicionar à Tela de Início) e com iOS 16.4 ou mais
+            recente. Você pode ativar os lembretes depois, no Perfil.
+          </p>
         </Card>
       </form>
     </main>

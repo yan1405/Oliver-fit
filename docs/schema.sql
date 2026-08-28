@@ -320,3 +320,59 @@ create policy "progress_photos_storage_self_access" on storage.objects
     bucket_id = 'progress-photos'
     and (storage.foldername(name))[1] = auth.uid()::text
   );
+
+-- ============================================================================
+-- Push notifications (Fase 8)
+-- Adicionado em 28/08/2026. Cole este bloco no SQL Editor do Supabase.
+-- Passa o schema de 11 para 12 tabelas — documentado aqui e em CLAUDE.md
+-- seção 7 no momento em que este bloco for aplicado.
+-- ============================================================================
+
+-- Horários dos lembretes diários (treino/dieta), definidos pelo próprio
+-- usuário no Perfil — não é um horário fixo decidido pela aplicação. Um
+-- array vazio significa lembretes desligados. Cada horário dispara no fuso
+-- de profiles.timezone (já existente).
+alter table public.profiles
+  add column if not exists reminder_times time[] not null default '{}';
+
+-- 12. push_subscriptions — inscrições de Web Push por dispositivo/navegador
+create table public.push_subscriptions (
+  id            uuid primary key default gen_random_uuid(),
+  user_id       uuid not null references public.profiles(id) on delete cascade,
+  endpoint      text not null,
+  p256dh        text not null,
+  auth          text not null,
+  created_at    timestamptz not null default now(),
+  unique (user_id, endpoint)
+);
+
+alter table public.push_subscriptions enable row level security;
+
+create policy "push_subscriptions_self_access" on public.push_subscriptions
+  for all using (user_id = auth.uid()) with check (user_id = auth.uid());
+
+-- ----------------------------------------------------------------------------
+-- Agendamento do disparo — a Supabase Edge Function send-reminders (código em
+-- supabase/functions/send-reminders/) precisa ser implantada separadamente
+-- (`supabase functions deploy send-reminders`, com os secrets VAPID_PUBLIC_KEY,
+-- VAPID_PRIVATE_KEY e VAPID_SUBJECT configurados — ver ORQUESTRACAO.md Fase 8).
+-- Este bloco só agenda a chamada HTTP a cada minuto via pg_cron + pg_net,
+-- ambas extensões nativas do Supabase (sem custo adicional).
+-- Troque <project-ref> e <anon-or-service-key> pelos valores reais do seu
+-- projeto antes de rodar.
+-- ----------------------------------------------------------------------------
+
+create extension if not exists pg_cron with schema extensions;
+create extension if not exists pg_net with schema extensions;
+
+select cron.schedule(
+  'send-reminders-every-minute',
+  '* * * * *',
+  $$
+  select net.http_post(
+    url := 'https://<project-ref>.supabase.co/functions/v1/send-reminders',
+    headers := jsonb_build_object('Authorization', 'Bearer <anon-or-service-key>', 'Content-Type', 'application/json'),
+    body := '{}'::jsonb
+  );
+  $$
+);

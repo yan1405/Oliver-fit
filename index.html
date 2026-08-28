@@ -3,9 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/pwa-192x192.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" href="/pwa-192x192.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#007AFF" />
     <meta name="description" content="Acompanhamento pessoal de treinos e dieta." />
+    <!-- iOS não lê display:standalone do manifest.json; depende destas meta
+         tags para abrir em tela cheia quando instalado via "Adicionar à Tela
+         de Início" (Safari, iOS 16.4+ para receber push também). -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Oliver Fit" />
     <title>Oliver Fit</title>
   </head>
   <body>

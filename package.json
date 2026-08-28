@@ -12,6 +12,7 @@
     "test:nutrition": "node --experimental-strip-types src/lib/nutrition.test.mjs",
     "test:dashboard": "node --experimental-strip-types src/lib/dashboard.test.mjs",
     "test:measurements": "node --experimental-strip-types src/lib/measurements.test.mjs",
+    "test:push": "node --experimental-strip-types src/lib/push.test.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

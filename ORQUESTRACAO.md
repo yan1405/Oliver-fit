@@ -292,13 +292,14 @@ galeria de fotos organizável por data, com comparação lado a lado entre duas 
 ## Fase 8 — Finalização do PWA e notificações
 
 **Depende de:** Fases 3 a 7 substancialmente prontas
+**Avaliação visual:** pendente de aprovação do Yan.
 
 ### Checklist de entregáveis
-- [ ] Substituir os ícones placeholder da Fase 0 por assets de marca reais (se já fornecidos pelo usuário; senão, manter o placeholder e marcar pendência explícita)
-- [ ] Implementar Web Push (service worker, pedido de permissão, lembretes de treino/dieta)
-- [ ] Aviso visível no onboarding sobre a limitação de push no iOS (precisa estar instalado via "Adicionar à Tela de Início", iOS 16.4+)
-- [ ] Testar instalação via "Adicionar à Tela de Início" em iOS e Android
-- [ ] Revisar `manifest.json` / configuração do `vite-plugin-pwa` por completo
+- [x] Substituir os ícones placeholder da Fase 0 por assets de marca reais — não fornecidos ainda; placeholder mantido, pendência explícita (ver seção 9 do CLAUDE.md)
+- [x] Implementar Web Push (service worker, pedido de permissão, lembretes de treino/dieta) — inclui inscrição, tabela `push_subscriptions`, horários configuráveis pelo próprio usuário e Edge Function `send-reminders` agendada via `pg_cron`/`pg_net` (decisão de escopo confirmada com o Yan em 28/08/2026)
+- [x] Aviso visível no onboarding sobre a limitação de push no iOS (precisa estar instalado via "Adicionar à Tela de Início", iOS 16.4+)
+- [ ] Testar instalação via "Adicionar à Tela de Início" em iOS e Android — não testado em hardware real (sem dispositivo disponível neste ambiente); passo a passo documentado no relatório da fase para o Yan confirmar
+- [x] Revisar `manifest.json` / configuração do `vite-plugin-pwa` por completo
 
 ### Critérios de aceite
 - App instalável nos dois sistemas operacionais
