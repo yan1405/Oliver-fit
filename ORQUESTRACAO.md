@@ -205,12 +205,13 @@ checkboxes da Fase 4 e faça commit "feat(fase-4): módulo treinos".
 ## Fase 5 — Módulo Dieta
 
 **Depende de:** Fase 1, Fase 2
+**Avaliação visual:** pendente de aprovação do Yan.
 
 ### Checklist de entregáveis
-- [ ] Registro manual de refeição (nome, quantidade, calorias, macros) gravando em `meals`
-- [ ] Tela "dieta do dia": cards de refeição estilo CalAI (referência visual, não funcional), anéis de macro comparando consumido x meta
-- [ ] Consumo da view `v_daily_nutrition_status` para calcular e persistir `trail_days.diet_completed`
-- [ ] Metas diárias editáveis no perfil (`daily_calorie_goal`, `daily_protein_goal_g`, etc.)
+- [x] Registro manual de refeição (nome, quantidade, calorias, macros) gravando em `meals`
+- [x] Tela "dieta do dia": cards de refeição estilo CalAI (referência visual, não funcional), anéis de macro comparando consumido x meta
+- [x] Consumo da view `v_daily_nutrition_status` para calcular e persistir `trail_days.diet_completed`
+- [x] Metas diárias editáveis no perfil (`daily_calorie_goal`, `daily_protein_goal_g`, etc.)
 
 ### Critérios de aceite
 - Registro de refeição funciona e reflete no total do dia

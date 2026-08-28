@@ -11,9 +11,9 @@ import { OnboardingPage } from './pages/OnboardingPage'
 import { ProfilePage } from './pages/ProfilePage'
 
 const WorkoutPage = lazy(() => import('./pages/WorkoutPage').then((module) => ({ default: module.WorkoutPage })))
+const DietPage = lazy(() => import('./pages/DietPage').then((module) => ({ default: module.DietPage })))
 
 const routes = [
-  ['/dieta', 'Dieta'],
   ['/progresso', 'Progresso'],
 ] as const
 
@@ -46,6 +46,7 @@ function AppRoutes() {
         <Route element={<AppShell />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/treino" element={<Suspense fallback={<main className="flex min-h-screen items-center justify-center bg-background text-body text-muted-foreground">Carregando treino…</main>}><WorkoutPage /></Suspense>} />
+          <Route path="/dieta" element={<Suspense fallback={<main className="flex min-h-screen items-center justify-center bg-background text-body text-muted-foreground">Carregando dieta…</main>}><DietPage /></Suspense>} />
           {routes.map(([path, title]) => (
             <Route key={path} path={path} element={<PlaceholderPage title={title} />} />
           ))}
