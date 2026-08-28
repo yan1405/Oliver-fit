@@ -102,7 +102,7 @@ onboarding".
 ## Fase 2 — Design system aplicado e componentes base
 
 **Depende de:** Fase 0
-**Avaliação visual:** pendente de aprovação do Yan.
+**Avaliação visual:** aprovada por Yan em 28/08/2026.
 
 ### Checklist de entregáveis
 - [x] Buscar cada componente listado em `docs/componentes-21st.md` pelo nome exato (via MCP/CLI do 21st Labs se configurado, senão manualmente em 21st.dev)
