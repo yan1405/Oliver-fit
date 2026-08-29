@@ -296,7 +296,7 @@ galeria de fotos organizável por data, com comparação lado a lado entre duas 
 
 ### Checklist de entregáveis
 - [x] Substituir os ícones placeholder da Fase 0 por assets de marca reais — não fornecidos ainda; placeholder mantido, pendência explícita (ver seção 9 do CLAUDE.md)
-- [x] Implementar Web Push (service worker, pedido de permissão, lembretes de treino/dieta) — inclui inscrição, tabela `push_subscriptions`, horários configuráveis pelo próprio usuário e Edge Function `send-reminders` agendada via `pg_cron`/`pg_net` (decisão de escopo confirmada com o Yan em 28/08/2026)
+- [x] Implementar Web Push (service worker, pedido de permissão, lembretes de treino/dieta) — inclui inscrição, tabela `push_subscriptions`, horários configuráveis pelo próprio usuário e Edge Function `send-reminders` agendada via `pg_cron`/`pg_net`; a chamada usa `CRON_SECRET` exclusivo armazenado no Vault, nunca `service_role` no SQL. Backend aplicado e validado no Supabase em 29/08/2026: cron ativo, respostas HTTP 200 e acesso sem segredo bloqueado com 401
 - [x] Aviso visível no onboarding sobre a limitação de push no iOS (precisa estar instalado via "Adicionar à Tela de Início", iOS 16.4+)
 - [ ] Testar instalação via "Adicionar à Tela de Início" em iOS e Android — não testado em hardware real (sem dispositivo disponível neste ambiente); passo a passo documentado no relatório da fase para o Yan confirmar
 - [x] Revisar `manifest.json` / configuração do `vite-plugin-pwa` por completo

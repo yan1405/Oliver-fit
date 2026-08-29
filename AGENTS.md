@@ -57,13 +57,13 @@ Mapeamento completo (navegação, onboarding, home/trilha, dashboard, treinos, d
 
 ## 7. Schema de dados
 
-11 tabelas Supabase (`profiles`, `exercises`, `workout_plans`, `workout_plan_exercises`, `workout_schedule`, `workout_sessions`, `set_logs`, `meals`, `measurements`, `progress_photos`, `trail_days`) + 2 views. RLS habilitado em tudo, política `user_id = auth.uid()`.
+O schema-alvo do v1 tem 12 tabelas Supabase (`profiles`, `exercises`, `workout_plans`, `workout_plan_exercises`, `workout_schedule`, `workout_sessions`, `set_logs`, `meals`, `measurements`, `progress_photos`, `trail_days`, `push_subscriptions`) + 2 views. RLS habilitado em tudo, política `user_id = auth.uid()`. A extensão da Fase 8 também adiciona `profiles.reminder_times` e o agendamento seguro da Edge Function via Vault. O bloco do fim de `docs/schema.sql` foi aplicado ao projeto remoto em 29/08/2026; cron e Edge Function retornaram HTTP 200 na validação pós-deploy.
 
 **Regra de avanço da trilha (fechada):**
 - `workout_completed` = existe `workout_sessions` do dia com `status = 'completed'`
 - `diet_completed` = pelo menos 3 refeições registradas no dia E soma de calorias entre 90–110% da meta diária (`profiles.daily_calorie_goal`) — calculado pela view `v_daily_nutrition_status`
 
-SQL completo, pronto para colar no Supabase: `docs/schema.sql`. **O projeto Supabase ainda não existe** — a criação da conta é ação do usuário, não deve ser feita em nome dele.
+SQL completo em `docs/schema.sql`. O projeto Supabase já existe; antes de aplicar blocos novos, revisar placeholders e nunca versionar chaves reais.
 
 ## 8. Roadmap de fases
 

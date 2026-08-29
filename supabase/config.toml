@@ -1,0 +1,4 @@
+project_id = "app-oliverfit"
+
+[functions.send-reminders]
+verify_jwt = false

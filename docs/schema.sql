@@ -355,23 +355,33 @@ create policy "push_subscriptions_self_access" on public.push_subscriptions
 -- Agendamento do disparo — a Supabase Edge Function send-reminders (código em
 -- supabase/functions/send-reminders/) precisa ser implantada separadamente
 -- (`supabase functions deploy send-reminders`, com os secrets VAPID_PUBLIC_KEY,
--- VAPID_PRIVATE_KEY e VAPID_SUBJECT configurados — ver ORQUESTRACAO.md Fase 8).
+-- VAPID_PRIVATE_KEY, VAPID_SUBJECT e CRON_SECRET configurados — ver
+-- ORQUESTRACAO.md Fase 8).
 -- Este bloco só agenda a chamada HTTP a cada minuto via pg_cron + pg_net,
 -- ambas extensões nativas do Supabase (sem custo adicional).
--- Troque <project-ref> e <anon-or-service-key> pelos valores reais do seu
--- projeto antes de rodar.
+-- SEGURANÇA: nunca grave service_role, VAPID_PRIVATE_KEY ou outra credencial
+-- administrativa neste job. Crie um segredo aleatório exclusivo para o cron,
+-- armazene o mesmo valor no Vault e no secret CRON_SECRET da Edge Function,
+-- e troque somente os dois placeholders abaixo antes de rodar este bloco.
 -- ----------------------------------------------------------------------------
 
 create extension if not exists pg_cron with schema extensions;
 create extension if not exists pg_net with schema extensions;
+create extension if not exists supabase_vault with schema vault;
+
+select vault.create_secret('https://<project-ref>.supabase.co', 'oliver_fit_project_url');
+select vault.create_secret('<cron-secret>', 'oliver_fit_send_reminders_cron_secret');
 
 select cron.schedule(
   'send-reminders-every-minute',
   '* * * * *',
   $$
   select net.http_post(
-    url := 'https://<project-ref>.supabase.co/functions/v1/send-reminders',
-    headers := jsonb_build_object('Authorization', 'Bearer <anon-or-service-key>', 'Content-Type', 'application/json'),
+    url := (select decrypted_secret from vault.decrypted_secrets where name = 'oliver_fit_project_url') || '/functions/v1/send-reminders',
+    headers := jsonb_build_object(
+      'Content-Type', 'application/json',
+      'x-cron-secret', (select decrypted_secret from vault.decrypted_secrets where name = 'oliver_fit_send_reminders_cron_secret')
+    ),
     body := '{}'::jsonb
   );
   $$

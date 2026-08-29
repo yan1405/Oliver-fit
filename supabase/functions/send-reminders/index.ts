@@ -8,7 +8,8 @@
 // concluídos (trail_days), envia um Web Push para cada inscrição do usuário.
 //
 // Secrets necessários (Supabase → Edge Functions → send-reminders → Secrets):
-//   VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY, VAPID_SUBJECT (mailto: ou https:)
+//   VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY, VAPID_SUBJECT (mailto: ou https:),
+//   CRON_SECRET (mesmo valor armazenado no Vault para o pg_cron)
 // SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY já são injetados automaticamente
 // pelo runtime do Supabase, não precisam ser configurados manualmente.
 import { createClient } from 'npm:@supabase/supabase-js@2'
@@ -19,6 +20,7 @@ const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
 const vapidPublicKey = Deno.env.get('VAPID_PUBLIC_KEY')!
 const vapidPrivateKey = Deno.env.get('VAPID_PRIVATE_KEY')!
 const vapidSubject = Deno.env.get('VAPID_SUBJECT') ?? 'https://github.com/yan1405/Oliver-fit'
+const cronSecret = Deno.env.get('CRON_SECRET')
 const defaultTimezone = 'America/Sao_Paulo'
 
 webpush.setVapidDetails(vapidSubject, vapidPublicKey, vapidPrivateKey)
@@ -32,7 +34,11 @@ function localDateKey(timeZone: string, at: Date) {
   return new Intl.DateTimeFormat('en-CA', { timeZone, year: 'numeric', month: '2-digit', day: '2-digit' }).format(at)
 }
 
-Deno.serve(async () => {
+Deno.serve(async (request) => {
+  if (!cronSecret || request.headers.get('x-cron-secret') !== cronSecret) {
+    return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: { 'Content-Type': 'application/json' } })
+  }
+
   const now = new Date()
 
   const { data: profiles, error: profilesError } = await supabase
