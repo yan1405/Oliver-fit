@@ -296,7 +296,7 @@ export function WorkoutPage() {
             <h1 className="font-display text-heading-1 font-bold">Seu treino</h1>
           </div>
           {remainingRest > 0 && (
-            <button className="rounded-pill bg-primary px-4 py-2 font-mono text-heading-3 font-semibold tabular-nums text-primary-foreground shadow-medium" type="button" onClick={() => setRemainingRest(0)} aria-label="Encerrar descanso">
+            <button className="rounded-pill bg-primary px-4 py-2 font-mono text-heading-3 font-bold tabular-nums text-primary-foreground shadow-medium" type="button" onClick={() => setRemainingRest(0)} aria-label="Encerrar descanso">
               {formatTimer(remainingRest)}
             </button>
           )}

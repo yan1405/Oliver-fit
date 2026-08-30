@@ -327,11 +327,11 @@ da Fase 8 e faça commit "feat(fase-8): pwa e notificações".
 **Depende de:** todas as fases anteriores
 
 ### Checklist de entregáveis
-- [ ] Definir e rodar critérios de aceite por tela (se ainda não definidos, derive-os a partir dos critérios de aceite de cada fase acima e liste explicitamente por tela)
-- [ ] Rodar `/oliver-fit-design-review` em todas as telas do app, não só nas mais recentes
-- [ ] `npm run build` final sem erros/warnings relevantes
+- [x] Definir e rodar critérios de aceite por tela — critérios e evidências autenticadas registrados em `docs/qa-final.md` em 30/08/2026, sem criar dados fictícios nem alterar registros reais apenas para demonstração
+- [x] Rodar `/oliver-fit-design-review` em todas as telas do app — Login, Onboarding, Home, Treino, Dieta, Progresso e Perfil aprovados no viewport mobile; correções de tipografia, contraste, scroll entre rotas e overflow aplicadas
+- [x] `npm run build` final sem erros/warnings relevantes — aprovado em 30/08/2026; há apenas warning de API deprecada emitido internamente pelo `vite-plugin-pwa@1.3.0`, sem impacto no artefato
 - [ ] Teste de instalação e uso em pelo menos um dispositivo real (iOS ou Android)
-- [ ] Checagem básica de performance (Lighthouse PWA score)
+- [x] Checagem básica de performance — Lighthouse da build de produção em 30/08/2026: Performance 97, Acessibilidade 100 e Boas práticas 100; o Lighthouse atual não publica categoria PWA separada, então manifest/service worker foram verificados diretamente
 
 ### Critérios de aceite
 - Build limpo

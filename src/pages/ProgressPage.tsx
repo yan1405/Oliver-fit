@@ -303,7 +303,7 @@ export function ProgressPage() {
             </div>
           </fieldset>
           <label className="grid gap-2 text-body-small font-semibold text-card-foreground">Foto
-            <input className="rounded-medium bg-muted px-4 py-4 text-body-small text-foreground file:mr-3 file:rounded-small file:border-0 file:bg-primary file:px-3 file:py-2 file:text-caption file:font-semibold file:text-primary-foreground" type="file" accept="image/*" onChange={(event) => setPhotoFile(event.target.files?.[0] ?? null)} required />
+            <input className="rounded-medium bg-muted px-4 py-4 text-body-small text-foreground file:mr-3 file:rounded-small file:border-0 file:bg-card file:px-3 file:py-2 file:text-caption file:font-semibold file:text-card-foreground" type="file" accept="image/*" onChange={(event) => setPhotoFile(event.target.files?.[0] ?? null)} required />
           </label>
           <Button disabled={saving || !photoFile} type="submit">{saving ? 'Enviando…' : 'Enviar foto'}</Button>
         </form>
